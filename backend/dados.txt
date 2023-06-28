@@ -1,0 +1,131 @@
+[
+ {
+    "id": 1,
+    "titulo": "Bubble Sort",
+    "tipo": "Ordenação",
+    "ilustracao": "https://i.ibb.co/n6sC7JN/current-Illo.png",
+    "descricao": "Um algoritmo simples que compara e troca elementos adjacentes até que a lista esteja ordenada.",
+    "funcionamento": "O Bubble Sort percorre a lista várias vezes, comparando pares de elementos adjacentes e realizando trocas se estiverem fora de ordem. Em cada iteração, o algoritmo move o maior elemento para o final da lista, permitindo que ele 'flutue' gradualmente para a posição correta. Esse processo continua até que não haja mais trocas a serem feitas, indicando que a lista está totalmente ordenada.",
+    "steps": [
+      "Comparar o primeiro elemento com o segundo e trocá-los se necessário.",
+      "Comparar o segundo com o terceiro e trocá-los se necessário, e assim por diante.",
+      "Repetir o processo até percorrer toda a lista sem realizar nenhuma troca."
+    ],
+    "gif": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Bubble-sort-example-300px.gif",
+    "code": "myList=[9,8,7,6,5,4,3,2,1,0]\n\ndef bubble_sort(lista):\n    n = len(lista)\n    for i in range(n):\n        for j in range(0, n-i-1):\n            if lista[j] > lista[j+1]:\n                lista[j], lista[j+1] = lista[j+1], lista[j]\n    return lista \n\nprint(f'lista ordenada: {bubble_sort(myList)}')"
+  },
+  {
+    "id": 2,
+    "titulo": "Selection Sort",
+    "tipo": "Ordenação",
+    "ilustracao": "https://i.ibb.co/ZfTZrMp/current-Illo-1.png",
+    "descricao": "Um algoritmo que encontra o menor elemento em cada iteração e o coloca na posição correta.",
+    "funcionamento": "O Selection Sort divide a lista em uma parte ordenada e uma parte não ordenada. A cada iteração, o algoritmo encontra o menor elemento na parte não ordenada e o coloca na posição correta na parte ordenada. Para fazer isso, ele percorre a parte não ordenada e compara cada elemento com o menor elemento encontrado até o momento. Se um elemento menor é encontrado, ele é trocado com o elemento atualmente considerado o menor. Esse processo continua até que toda a lista esteja ordenada.",
+    "steps": [
+      "Encontrar o menor elemento na parte não ordenada da lista.",
+      "Trocar o menor elemento com o primeiro elemento da parte não ordenada.",
+      "Expandir a parte ordenada da lista e repetir o processo até que toda a lista esteja ordenada."
+    ],
+    "gif": "https://joaoarthurbm.github.io/eda/posts/selection-sort/selection.gif",
+    "code": "myList=[9,8,7,6,5,4,3,2,1,0]\n\ndef selection_sort(lista):\n    n = len(lista)\n    for i in range(n):\n        min_index = i\n        for j in range(i+1, n):\n            if lista[j] < lista[min_index]:\n                min_index = j\n        lista[i], lista[min_index] = lista[min_index], lista[i]\n    return lista \n\nprint(f'lista ordenada: {selection_sort(myList)}')"
+  },
+  {
+    "id": 3,
+    "titulo": "Insertion Sort",
+    "tipo": "Ordenação",
+    "ilustracao": "https://i.ibb.co/Lkz5q0r/current-Illo-2.png",
+    "descricao": "Um algoritmo que insere cada elemento em sua posição apropriada, deslocando os elementos maiores conforme necessário.",
+    "funcionamento": "O Insertion Sort divide a lista em uma parte ordenada e uma parte não ordenada. A cada iteração, o algoritmo seleciona um elemento da parte não ordenada e o insere na posição correta da parte ordenada. Para fazer isso, ele compara o elemento selecionado com os elementos da parte ordenada, deslocando os elementos maiores à direita para abrir espaço para a inserção. Esse processo continua até que toda a lista esteja ordenada.",
+    "steps": [
+      "Selecionar um elemento da parte não ordenada.",
+      "Comparar o elemento com os elementos da parte ordenada, deslocando os maiores à direita.",
+      "Inserir o elemento na posição correta da parte ordenada.",
+      "Expandir a parte ordenada e repetir o processo até que toda a lista esteja ordenada."
+    ],
+    "gif": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif",
+    "code": "myList=[9,8,7,6,5,4,3,2,1,0]\n\ndef insertion_sort(lista):\n    n = len(lista)\n    for i in range(1, n):\n        key = lista[i]\n        j = i - 1\n        while j >= 0 and lista[j] > key:\n            lista[j + 1] = lista[j]\n            j -= 1\n        lista[j + 1] = key\n    return lista \n\nprint(f'lista ordenada: {insertion_sort(myList)}')"
+  },
+  {
+    "id": 4,
+    "titulo": "Quick Sort",
+    "tipo": "Ordenação",
+    "ilustracao": "https://i.ibb.co/3zRnPLr/current-Illo-3.png",
+    "descricao": "Um algoritmo eficiente que divide a lista em partições, ordena-as recursivamente e as combina para obter uma lista ordenada.",
+    "funcionamento": "O Quick Sort é um algoritmo de divisão e conquista. Ele seleciona um elemento chamado 'pivô' da lista e rearranja os outros elementos de forma que os elementos menores que o pivô fiquem à sua esquerda e os elementos maiores fiquem à sua direita. Em seguida, aplica o mesmo processo de forma recursiva nas partições menores à esquerda e à direita do pivô, até que toda a lista esteja ordenada. O pivô escolhido pode ser o último elemento, o primeiro elemento ou um elemento aleatório da lista. Depois de cada iteração, o pivô estará em sua posição final.",
+    "steps": [
+      "Selecionar um elemento como pivô.",
+      "Rearranjar a lista de forma que os elementos menores que o pivô fiquem à esquerda e os maiores à direita.",
+      "Aplicar o mesmo processo nas partições menores à esquerda e à direita do pivô.",
+      "Repetir o processo até que toda a lista esteja ordenada."
+    ],
+    "gif": "https://commons.wikimedia.org/wiki/File:Quicksort-example.gif",
+    "code": "myList=[9,8,7,6,5,4,3,2,1,0]\n\ndef quick_sort(lista):\n    if len(lista) <= 1:\n        return lista\n    pivot = lista[-1]\n    lesser = [x for x in lista if x < pivot]\n    equal = [x for x in lista if x == pivot]\n    greater = [x for x in lista if x > pivot]\n    return quick_sort(lesser) + equal + quick_sort(greater)\n\nprint(f'lista ordenada: {quick_sort(myList)}')"
+  },
+  {
+    "id": 5,
+    "titulo": "Merge Sort",
+    "tipo": "Ordenação",
+    "ilustracao": "https://i.ibb.co/2Zrk8FC/current-Illo-4.png",
+    "descricao": "Um algoritmo que divide a lista pela metade, ordena cada metade recursivamente e combina as partes ordenadas para obter uma lista ordenada.",
+    "funcionamento": "O Merge Sort é um algoritmo de divisão e conquista. Ele divide a lista em duas metades iguais, recursivamente ordena cada metade e, em seguida, combina as partes ordenadas para obter uma lista totalmente ordenada. O processo de combinação envolve comparar os elementos das duas metades e selecionar o menor elemento de cada vez, adicionando-o à lista final ordenada. Esse processo continua até que todas as partes tenham sido combinadas.",
+    "steps": [
+      "Dividir a lista ao meio.",
+      "Ordenar cada metade recursivamente.",
+      "Combinação: Comparar os elementos das duas metades e adicionar o menor à lista final ordenada.",
+      "Repetir o processo de combinação até que todas as partes tenham sido combinadas."
+    ],
+    "gif": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Merge-sort-example-300px.gif?20151222172210",
+    "code": "myList=[9,8,7,6,5,4,3,2,1,0]\n\ndef merge_sort(lista):\n    if len(lista) <= 1:\n        return lista\n    middle = len(lista) // 2\n    left_half = lista[:middle]\n    right_half = lista[middle:]\n    left_half = merge_sort(left_half)\n    right_half = merge_sort(right_half)\n    return merge(left_half, right_half)\n\n\ndef merge(left, right):\n    merged = []\n    i = j = 0\n    while i < len(left) and j < len(right):\n        if left[i] < right[j]:\n            merged.append(left[i])\n            i += 1\n        else:\n            merged.append(right[j])\n            j += 1\n    merged.extend(left[i:])\n    merged.extend(right[j:])\n    return merged \n\nprint(f'lista ordenada: {merge_sort(myList)}')"
+  },
+  {
+    "id": 6,
+    "titulo": "Heap Sort",
+    "tipo": "Ordenação",
+    "ilustracao": "https://i.ibb.co/bHbR2rL/undraw-programming-re-kg9v-1.png",
+    "descricao": "Um algoritmo que constrói uma árvore binária chamada heap e realiza operações de 'heapify' para ordenar a lista.",
+    "funcionamento": "O Heap Sort constrói uma árvore binária chamada heap a partir da lista. A árvore heap é uma estrutura de dados em que cada pai é maior ou igual aos seus filhos. Primeiro, o algoritmo constrói a heap rearranjando a lista de forma a satisfazer a propriedade do heap. Em seguida, ele realiza repetidamente a operação de 'heapify', que consiste em remover o maior elemento da raiz do heap e reconstruir o heap com os elementos restantes. Esse processo continua até que todos os elementos tenham sido removidos do heap, resultando em uma lista totalmente ordenada.",
+    "steps": [
+      "Construir a heap a partir da lista.",
+      "Realizar repetidamente a operação de 'heapify': remover o maior elemento e reconstruir o heap.",
+      "Repetir até que todos os elementos tenham sido removidos do heap."
+    ],
+    "gif": "https://miro.medium.com/v2/resize:fit:798/0*hVi2iYTIVkrm9ODv.gif",
+    "code": "myList=[9,8,7,6,5,4,3,2,1,0]\n\ndef heapify(lista, n, i):\n    largest = i\n    left = 2 * i + 1\n    right = 2 * i + 2\n    if left < n and lista[i] < lista[left]:\n        largest = left\n    if right < n and lista[largest] < lista[right]:\n        largest = right\n    if largest != i:\n        lista[i], lista[largest] = lista[largest], lista[i]\n        heapify(lista, n, largest)\n\n\ndef heap_sort(lista):\n    n = len(lista)\n    for i in range(n // 2 - 1, -1, -1):\n        heapify(lista, n, i)\n    for i in range(n - 1, 0, -1):\n        lista[i], lista[0] = lista[0], lista[i]\n        heapify(lista, i, 0)\n    return lista\n\nprint(f'lista ordenada: {heap_sort(myList)}')"
+  },
+  {
+    "id": 7,
+    "titulo": "Busca Sequencial",
+    "tipo": "Pesquisa",
+    "ilustracao": "https://i.ibb.co/n6sC7JN/current-Illo.png",
+    "descricao": "Um algoritmo de pesquisa que percorre a lista sequencialmente, elemento por elemento, até encontrar o elemento desejado.",
+    "funcionamento": "A Busca Sequencial percorre a lista sequencialmente, elemento por elemento, até encontrar o elemento desejado. O algoritmo compara cada elemento da lista com o elemento buscado e retorna a posição se o elemento for encontrado. Caso contrário, retorna uma indicação de que o elemento não está presente na lista.",
+    "steps": [
+      "Começar a busca pelo primeiro elemento da lista.",
+      "Comparar o elemento atual com o elemento buscado.",
+      "Se o elemento for encontrado, retornar a posição.",
+      "Se o elemento não for encontrado, passar para o próximo elemento.",
+      "Repetir o processo até o final da lista."
+    ],
+    "gif": "https://www.tutorialspoint.com/data_structures_algorithms/images/linear_search.gif",
+    "code": "myList=[9,8,7,6,5,4,3,2,1,0]\n\ndef sequential_search(lista, elemento):\n    for i, item in enumerate(lista):\n        if item == elemento:\n            return i\n    return -1\n\nprint(f'item no index: {sequential_search(myList, 5)}')"
+  },
+  {
+    "id": 8,
+    "titulo": "Busca Binária",
+    "tipo": "Pesquisa",
+    "ilustracao": "https://i.ibb.co/ZfTZrMp/current-Illo-1.png",
+    "descricao": "Um algoritmo de pesquisa eficiente que utiliza a estratégia de divisão e conquista em uma lista ordenada.",
+    "funcionamento": "A Busca Binária é aplicável apenas em listas ordenadas. O algoritmo compara o elemento buscado com o elemento do meio da lista e, com base nessa comparação, descarta metade da lista a cada iteração. O processo continua até que o elemento seja encontrado ou até que a lista seja reduzida a zero.",
+    "steps": [
+      "Comparar o elemento buscado com o elemento do meio da lista.",
+      "Se o elemento for igual ao elemento do meio, a busca é concluída com sucesso.",
+      "Se o elemento for menor que o elemento do meio, descartar a metade direita da lista.",
+      "Se o elemento for maior que o elemento do meio, descartar a metade esquerda da lista.",
+      "Repetir o processo com a metade restante da lista até que o elemento seja encontrado ou a lista seja reduzida a zero."
+    ],
+    "gif": "https://camo.githubusercontent.com/7d378acc46223bcd31ae0c20598716ab92d68191543f8c5a52c8d9f4db9d249b/68747470733a2f2f6473303535757a6574616f62622e636c6f756466726f6e742e6e65742f696d6167655f6f7074696d697a65722f373137343033623133363833373663623666393135653662346265656233613761643534313035652e676966",
+    "code": "myList=[9,8,7,6,5,4,3,2,1,0]\n\ndef binary_search(lista, elemento):\n    inicio = 0\n    fim = len(lista) - 1\n    while inicio <= fim:\n        meio = (inicio + fim) // 2\n        if lista[meio] == elemento:\n            return meio\n        elif lista[meio] < elemento:\n            inicio = meio + 1\n        else:\n            fim = meio - 1\n    return -1\n\nprint(f'item no index: {binary_search(myList, 5)}')"
+  }
+]
+
+
