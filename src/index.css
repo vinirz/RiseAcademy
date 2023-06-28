@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+    overflow: hidden;
+}
+  
+*::-webkit-scrollbar-thumb {
+    background-color: #00C898;
+    border-radius: 999px;
+    height: 2px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background-color: #02a881;
+}
+
+.ace_gutter-layer{
+    background-color: rgb(30 27 75);
+}
+
+#ace-editor{
+    font-size: 20px !important;
+}
